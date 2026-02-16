@@ -29,10 +29,10 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Motion Primitives Pro',
+    name: 'aarch:ve',
     description:
-      'Advanced components and templates to craft beautiful websites.',
-    link: 'https://pro.motion-primitives.com/',
+      'A decentralized archive of the web.',
+    link: 'https://aarchive.xyz/',
     video:
       'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
     id: 'project1',
@@ -49,28 +49,52 @@ export const PROJECTS: Project[] = [
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
-    company: 'Reglazed Studio',
-    title: 'CEO',
-    start: '2024',
-    end: 'Present',
-    link: 'https://ibelick.com',
+    company: 'eïdethic',
+    title: 'Foundateur & CTO',
+    start: 'nov. 2023',
+    end: 'aujourd\'hui',
+    link: 'https://linkedin.com/in/melvin-eidethic',
     id: 'work1',
   },
   {
-    company: 'Freelance',
-    title: 'Design Engineer',
-    start: '2022',
-    end: '2024',
-    link: 'https://ibelick.com',
+    company: 'Forj',
+    title: 'Développeur Full Stack',
+    start: 'nov. 2023',
+    end: 'aujourd\'hui',
+    link: 'https://linkedin.com/in/melvin-eidethic',
     id: 'work2',
   },
   {
-    company: 'Freelance',
-    title: 'Front-end Developer',
-    start: '2017',
-    end: 'Present',
-    link: 'https://ibelick.com',
+    company: 'Mokovel',
+    title: 'Consultant Numérique',
+    start: 'juin 2023',
+    end: 'aout 2023',
+    link: 'https://linkedin.com/in/melvin-eidethic',
     id: 'work3',
+  },
+  {
+    company: 'GMX',
+    title: 'Chargé de projet',
+    start: 'sept. 2021',
+    end: 'sept. 2022',
+    link: 'https://linkedin.com/in/melvin-eidethic',
+    id: 'work4',
+  },
+  {
+    company: 'Big Youth',
+    title: 'Chargé de projet',
+    start: 'sept. 2019',
+    end: 'sept. 2022',
+    link: 'https://linkedin.com/in/melvin-eidethic',
+    id: 'work5',
+  },
+  {
+    company: 'Colegram',
+    title: 'Responsable produit',
+    start: 'mars 2021',
+    end: 'sept. 2021',
+    link: 'https://linkedin.com/in/melvin-eidethic',
+    id: 'work6',
   },
 ]
 
@@ -106,20 +130,20 @@ export const BLOG_POSTS: BlogPost[] = [
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'Github',
-    link: 'https://github.com/ibelick',
+    link: 'https://github.com/un3trois7',
   },
   {
     label: 'Twitter',
-    link: 'https://twitter.com/ibelick',
+    link: 'https://twitter.com/un3trois7',
   },
   {
     label: 'LinkedIn',
-    link: 'https://www.linkedin.com/in/ibelick',
+    link: 'https://linkedin.com/in/melvin-eidethic',
   },
   {
     label: 'Instagram',
-    link: 'https://www.instagram.com/ibelick',
+    link: 'https://www.instagram.com/melvinowski',
   },
 ]
 
-export const EMAIL = 'your@email.com'
+export const EMAIL = 'contact@mel-v.in'
