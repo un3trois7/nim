@@ -29,20 +29,20 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'aarch:ve',
+    name: 'personnel - aarch:ve',
     description:
-      'A decentralized archive of the web.',
+      'creation & transmission héritage numérique',
     link: 'https://aarchive.xyz/',
     video:
       'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
     id: 'project1',
   },
   {
-    name: 'Motion Primitives',
-    description: 'UI kit to make beautiful, animated interfaces.',
-    link: 'https://motion-primitives.com/',
+    name: 'freelance - Dyleo',
+    description: 'design landing page + dev frontend + backoffice',
+    link: 'https://dyleopizza.fr/',
     video:
-      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
+      '/blog/assets/000868.mp4',
     id: 'project2',
   },
 ]
@@ -50,7 +50,7 @@ export const PROJECTS: Project[] = [
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'eïdethic',
-    title: 'Foundateur & CTO',
+    title: 'foundateur & CTO',
     start: 'nov. 2023',
     end: 'aujourd\'hui',
     link: 'https://linkedin.com/in/melvin-eidethic',
@@ -58,7 +58,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   },
   {
     company: 'Forj',
-    title: 'Développeur Full Stack',
+    title: 'developpeur full stack',
     start: 'nov. 2023',
     end: 'aujourd\'hui',
     link: 'https://linkedin.com/in/melvin-eidethic',
@@ -66,7 +66,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   },
   {
     company: 'Mokovel',
-    title: 'Consultant Numérique',
+    title: 'consultant numérique',
     start: 'juin 2023',
     end: 'aout 2023',
     link: 'https://linkedin.com/in/melvin-eidethic',
@@ -74,7 +74,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   },
   {
     company: 'GMX',
-    title: 'Chargé de projet',
+    title: 'chargé de projet',
     start: 'sept. 2021',
     end: 'sept. 2022',
     link: 'https://linkedin.com/in/melvin-eidethic',
@@ -82,7 +82,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   },
   {
     company: 'Big Youth',
-    title: 'Chargé de projet',
+    title: 'chargé de projet',
     start: 'sept. 2019',
     end: 'sept. 2022',
     link: 'https://linkedin.com/in/melvin-eidethic',
@@ -90,7 +90,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
   },
   {
     company: 'Colegram',
-    title: 'Responsable produit',
+    title: 'responsable produit',
     start: 'mars 2021',
     end: 'sept. 2021',
     link: 'https://linkedin.com/in/melvin-eidethic',
