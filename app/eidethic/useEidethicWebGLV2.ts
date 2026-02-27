@@ -10,12 +10,14 @@ export function useEidethicWebGLV2(
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
+    const canvasEl: HTMLCanvasElement = canvas
 
-    const gl = canvas.getContext('webgl')
+    const gl = canvasEl.getContext('webgl')
     if (!gl) {
       console.error('WebGL not supported')
       return
     }
+    const glCtx: WebGLRenderingContext = gl
 
     const vsSource = `
       attribute vec4 aVertexPosition;
@@ -137,68 +139,71 @@ export function useEidethicWebGLV2(
       return shaderProgram
     }
 
-    const shaderProgram = initShaderProgram(gl, vsSource, fsSource)
+    const shaderProgram = initShaderProgram(glCtx, vsSource, fsSource)
     if (!shaderProgram) return
 
     const programInfo = {
       program: shaderProgram,
       attribLocations: {
-        vertexPosition: gl.getAttribLocation(shaderProgram, 'aVertexPosition'),
+        vertexPosition: glCtx.getAttribLocation(
+          shaderProgram,
+          'aVertexPosition'
+        ),
       },
       uniformLocations: {
-        resolution: gl.getUniformLocation(shaderProgram, 'u_resolution'),
-        time: gl.getUniformLocation(shaderProgram, 'u_time'),
+        resolution: glCtx.getUniformLocation(shaderProgram, 'u_resolution'),
+        time: glCtx.getUniformLocation(shaderProgram, 'u_time'),
       },
     }
 
-    const positionBuffer = gl.createBuffer()
-    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
+    const positionBuffer = glCtx.createBuffer()
+    glCtx.bindBuffer(glCtx.ARRAY_BUFFER, positionBuffer)
     const positions = [1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, -1.0]
-    gl.bufferData(
-      gl.ARRAY_BUFFER,
+    glCtx.bufferData(
+      glCtx.ARRAY_BUFFER,
       new Float32Array(positions),
-      gl.STATIC_DRAW
+      glCtx.STATIC_DRAW
     )
 
     function resize() {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-      gl.viewport(0, 0, canvas.width, canvas.height)
+      canvasEl.width = window.innerWidth
+      canvasEl.height = window.innerHeight
+      glCtx.viewport(0, 0, canvasEl.width, canvasEl.height)
     }
     window.addEventListener('resize', resize)
     resize()
 
     let animId: number
     function render() {
-      gl.clearColor(0.0, 0.0, 0.0, 0.0)
-      gl.clear(gl.COLOR_BUFFER_BIT)
+      glCtx.clearColor(0.0, 0.0, 0.0, 0.0)
+      glCtx.clear(glCtx.COLOR_BUFFER_BIT)
 
-      gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer)
-      gl.vertexAttribPointer(
+      glCtx.bindBuffer(glCtx.ARRAY_BUFFER, positionBuffer)
+      glCtx.vertexAttribPointer(
         programInfo.attribLocations.vertexPosition,
         2,
-        gl.FLOAT,
+        glCtx.FLOAT,
         false,
         0,
         0
       )
-      gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition)
-      gl.useProgram(programInfo.program)
+      glCtx.enableVertexAttribArray(programInfo.attribLocations.vertexPosition)
+      glCtx.useProgram(programInfo.program)
 
-      gl.enable(gl.BLEND)
-      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
+      glCtx.enable(glCtx.BLEND)
+      glCtx.blendFunc(glCtx.SRC_ALPHA, glCtx.ONE_MINUS_SRC_ALPHA)
 
-      gl.uniform2f(
+      glCtx.uniform2f(
         programInfo.uniformLocations.resolution,
-        gl.canvas.width,
-        gl.canvas.height
+        glCtx.canvas.width,
+        glCtx.canvas.height
       )
-      gl.uniform1f(
+      glCtx.uniform1f(
         programInfo.uniformLocations.time,
         (Date.now() - startTimeRef.current) / 1000.0
       )
 
-      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
+      glCtx.drawArrays(glCtx.TRIANGLE_STRIP, 0, 4)
       animId = requestAnimationFrame(render)
     }
     render()

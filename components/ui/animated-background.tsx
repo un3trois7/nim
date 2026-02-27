@@ -4,16 +4,25 @@ import { AnimatePresence, Transition, motion } from 'motion/react'
 import {
   Children,
   cloneElement,
+  isValidElement,
   ReactElement,
+  type ReactNode,
   useEffect,
   useState,
   useId,
 } from 'react'
 
+type AnimatedBackgroundChildProps = {
+  'data-id': string
+  className?: string
+  children?: ReactNode
+  [key: string]: unknown
+}
+
 export type AnimatedBackgroundProps = {
   children:
-    | ReactElement<{ 'data-id': string }>[]
-    | ReactElement<{ 'data-id': string }>
+    | ReactElement<AnimatedBackgroundChildProps>[]
+    | ReactElement<AnimatedBackgroundChildProps>
   defaultValue?: string
   onValueChange?: (newActiveId: string | null) => void
   className?: string
@@ -46,8 +55,10 @@ export function AnimatedBackground({
     }
   }, [defaultValue])
 
-  return Children.map(children, (child: any, index) => {
-    const id = child.props['data-id']
+  return Children.map(children, (child, index) => {
+    if (!isValidElement(child)) return child
+    const el = child as ReactElement<AnimatedBackgroundChildProps>
+    const id = el.props['data-id']
 
     const interactionProps = enableHover
       ? {
@@ -59,10 +70,10 @@ export function AnimatedBackground({
         }
 
     return cloneElement(
-      child,
+      el,
       {
         key: index,
-        className: cn('relative inline-flex', child.props.className),
+        className: cn('relative inline-flex', el.props.className),
         'data-checked': activeId === id ? 'true' : 'false',
         ...interactionProps,
       },
@@ -83,7 +94,7 @@ export function AnimatedBackground({
             />
           )}
         </AnimatePresence>
-        <div className="z-10">{child.props.children}</div>
+        <div className="z-10">{el.props.children}</div>
       </>,
     )
   })

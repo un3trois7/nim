@@ -10,12 +10,9 @@ import {
   MorphingDialogClose,
   MorphingDialogContainer,
 } from '@/components/ui/morphing-dialog'
-import Link from 'next/link'
-import { AnimatedBackground } from '@/components/ui/animated-background'
 import {
   PROJECTS,
   WORK_EXPERIENCE,
-  BLOG_POSTS,
   EMAIL,
   SOCIAL_LINKS,
 } from './data'
@@ -173,7 +170,7 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            créateur d'expériences numériques intuitives et performantes.
+            créateur d&apos;expériences numériques intuitives et performantes.
             developpeur web orienté utilisateur. ergonomie et simplicité comme fer de lance. 
           </p>
         </div>
