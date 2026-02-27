@@ -4,6 +4,7 @@ type Project = {
   link: string
   video: string
   id: string
+  type?: 'projet' | 'freelance'
 }
 
 type WorkExperience = {
@@ -29,21 +30,42 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'personnel - aarch:ve',
+    name: 'eïdethic',
     description:
-      'creation & transmission héritage numérique',
-    link: 'https://aarchive.xyz/',
+      'suite de logiciels open source pour les internautes soucieux de leur vie privée.',
+    link: '/eidethic',
     video:
-      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
+      '/blog/assets/000876.mp4',
     id: 'project1',
+    
   },
   {
-    name: 'freelance - Dyleo',
+    name: 'pizza dyleo',
     description: 'design landing page + dev frontend + backoffice',
     link: 'https://dyleopizza.fr/',
     video:
       '/blog/assets/000868.mp4',
     id: 'project2',
+    type: 'freelance',
+  },
+  {
+    name: 'aarch:ve',
+    description:
+      'creation & transmission héritage numérique',
+    link: 'https://aarchive.xyz/',
+    video:
+      '/blog/assets/pixelaarchive.svg',
+    id: 'project3',
+    
+  },
+  {
+    name: 'atarax:e',
+    description:
+      'jeu video introspectif : le voyage du temps intérieur.',
+    link: 'https://atarax.ie/',
+    video:
+      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
+    id: 'project4',
   },
 ]
 
@@ -53,7 +75,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     title: 'foundateur & CTO',
     start: 'nov. 2023',
     end: 'aujourd\'hui',
-    link: 'https://linkedin.com/in/melvin-eidethic',
+    link: '/eidethic',
     id: 'work1',
   },
   {

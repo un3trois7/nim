@@ -41,9 +41,19 @@ const TRANSITION_SECTION = {
 
 type ProjectVideoProps = {
   src: string
+  alt?: string
 }
 
-function ProjectVideo({ src }: ProjectVideoProps) {
+function ProjectVideo({ src, alt }: ProjectVideoProps) {
+  const cleanSrc = src.split('?')[0]?.toLowerCase() ?? ''
+  const isVideo =
+    cleanSrc.endsWith('.mp4') ||
+    cleanSrc.endsWith('.webm') ||
+    cleanSrc.endsWith('.mov') ||
+    cleanSrc.endsWith('.m4v') ||
+    cleanSrc.endsWith('.ogg')
+  const isSvg = cleanSrc.endsWith('.svg')
+
   return (
     <MorphingDialog
       transition={{
@@ -53,23 +63,49 @@ function ProjectVideo({ src }: ProjectVideoProps) {
       }}
     >
       <MorphingDialogTrigger>
-        <video
-          src={src}
-          autoPlay
-          loop
-          muted
-          className="aspect-video w-full cursor-zoom-in rounded-xl"
-        />
-      </MorphingDialogTrigger>
-      <MorphingDialogContainer>
-        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
+        {isVideo ? (
           <video
             src={src}
             autoPlay
             loop
             muted
-            className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
+            playsInline
+            className="aspect-video w-full cursor-zoom-in rounded-xl"
           />
+        ) : (
+          <img
+            src={src}
+            alt={alt ?? ''}
+            loading="lazy"
+            className={[
+              'aspect-video w-full cursor-zoom-in rounded-xl',
+              isSvg ? 'object-contain' : 'object-cover',
+            ].join(' ')}
+          />
+        )}
+      </MorphingDialogTrigger>
+      <MorphingDialogContainer>
+        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
+          {isVideo ? (
+            <video
+              src={src}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
+            />
+          ) : (
+            <img
+              src={src}
+              alt={alt ?? ''}
+              loading="lazy"
+              className={[
+                'aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]',
+                isSvg ? 'object-contain' : 'object-cover',
+              ].join(' ')}
+            />
+          )}
         </MorphingDialogContent>
         <MorphingDialogClose
           className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
@@ -152,17 +188,24 @@ export default function Personal() {
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
               <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                <ProjectVideo src={project.video} />
+                <ProjectVideo src={project.video} alt={project.name} />
               </div>
               <div className="px-1">
-                <a
-                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
-                  href={project.link}
-                  target="_blank"
-                >
-                  {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
-                </a>
+                <span className="inline-flex items-center gap-2">
+                  {project.type ? (
+                    <span className="rounded border border-dashed border-zinc-400 px-1.5 py-0.5 text-xs font-medium text-zinc-600 dark:border-zinc-500 dark:text-zinc-400">
+                      {project.type}
+                    </span>
+                  ) : null}
+                  <a
+                    className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
+                    href={project.link}
+                    target="_blank"
+                  >
+                    {project.name}
+                    <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
+                  </a>
+                </span>
                 <p className="text-base text-zinc-600 dark:text-zinc-400">
                   {project.description}
                 </p>

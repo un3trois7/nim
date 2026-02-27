@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
-import { Header } from './header'
-import { Footer } from './footer'
 import { ThemeProvider } from 'next-themes'
+import { LayoutChrome } from './layout-chrome'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -12,15 +11,12 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://nim-fawn.vercel.app/'),
+  metadataBase: new URL('https://mel-v.in/'),
   alternates: {
     canonical: '/'
   },
-  title: {
-    default: 'Nim - Personal website template',
-    template: '%s | Nim'
-  },
-  description:  'Nim is a free and open-source personal website template built with Next.js 15, React 19 and Motion-Primitives.',
+  title: 
+     'melvin tourneux - software engineer, designer, entrepreneur',
 };
 
 const geist = Geist({
@@ -49,13 +45,7 @@ export default function RootLayout({
           storageKey="theme"
           defaultTheme="system"
         >
-          <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-inter-tight)]">
-            <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-4 pt-20">
-              <Header />
-              {children}
-              <Footer />
-            </div>
-          </div>
+          <LayoutChrome>{children}</LayoutChrome>
         </ThemeProvider>
       </body>
     </html>
